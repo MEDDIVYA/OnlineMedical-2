@@ -1,0 +1,56 @@
+package com.medical.service;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import com.medical.service.OrderService;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.medical.entity.Order;
+
+
+
+@SpringBootTest
+class OrderServiceImplTest {
+
+	@Test
+	void testGetAllOrders() {
+		Order order1 = new Order("dolo", "abc", "23-02-2023", 1, "delivered");
+
+		Order order2 = new Order("dolo", "abc", "23-02-2023", 1, "delivered");
+
+		List<Order> sampleOutput = new ArrayList<>();
+		sampleOutput.add(order1);
+		sampleOutput.add(order2);
+
+		BDDMockito.given(orderService.getAllOrders()).willReturn(sampleOutput);
+
+		// when :- ready to test the functionality (service)
+		List<Order> actualOutput = orderService.getAllOrders();
+
+		//verify
+		assertNotNull(actualOutput);
+		assertThat(actualOutput.size()).isGreaterThan(0);
+		assertIterableEquals(sampleOutput, actualOutput);
+
+
+		//fail("Not yet implemented");
+	}
+
+
+	@Test
+	void testUpdateOrderById() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testDeleteOrderById() {
+		fail("Not yet implemented");
+	}
+
+}
